@@ -1,16 +1,16 @@
 'use strict';
 
-const pa11y  = require('pa11y');
-const assert = require('assert');
+const pa11y   = require('pa11y');
+const Results = require('./lib/results');
 
 function testDesktop(server, path, callback) {
   let test = generateTest(desktopSize);
-  runTest(test, server, path, callback);
+  runTest(test, urlFor(server, path), callback);
 }
 
 function testMobile(server, path, callback) {
   let test = generateTest(desktopSize);
-  runTest(test, server, path, callback);
+  runTest(test, urlFor(server, path), callback);
 }
 
 function generateTest(size, options) {
@@ -20,14 +20,18 @@ function generateTest(size, options) {
   });
 }
 
-function runTest(test, server, path, callback) {
+function urlFor(server, path) {
   let port = server.address().port;
   let host = server.address().address;
   if (host === '::') {
     host = 'localhost';
   }
 
-  test.run('http://' + host + ':' + port + path, (err, results) => {
+  return 'http://' + host + ':' + port + path;
+}
+
+function runTest(test, url, callback) {
+  test.run(url, (err, results) => {
     if (err) { throw err; }
     callback(new Results(results));
   });
@@ -42,44 +46,6 @@ let desktopSize = {
   width: 1200,
   height: 800
 };
-
-class Results {
-  constructor(data) {
-    this.data = data;
-  }
-
-  assertNoErrors() {
-    assert(this.errors().length === 0);
-  }
-
-  assertErrorsLessThan(threshold) {
-    assert(this.errors().length <= threshold);
-  }
-
-  assertWarningsLessThan(threshold) {
-    assert(this.warnings().length <= threshold);
-  }
-
-  assertNoticesLessThan(threshold) {
-    assert(this.notices().length <= threshold);
-  }
-
-  errors() {
-    return this.getByType('error');
-  }
-
-  warnings() {
-    return this.getByType('warning');
-  }
-
-  notices() {
-    return this.getByType('notice');
-  }
-
-  getByType(type) {
-    return this.data.filter((incident) => { return incident.type === type; });
-  }
-}
 
 module.exports = {
   Results: Results,

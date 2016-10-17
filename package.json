@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test node_modules/.bin/mocha --recursive",
-    "lint": "node_modules/.bin/jshint app/ test/",
+    "lint": "node_modules/.bin/jshint index.js lib/ test/",
     "test_coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --recursive"
   },
   "pre-commit": ["test", "lint"],
