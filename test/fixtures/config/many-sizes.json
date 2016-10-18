@@ -1,0 +1,27 @@
+{
+  "ignore": [
+    "notice",
+    "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2"
+  ],
+  "page": {
+    "headers": {
+      "Cookie": "foo=bar"
+    }
+  },
+
+  "sizes": {
+    "mobile": {
+      "width": 320,
+      "height": 480
+    },
+    "tablet": {
+      "width": 600,
+      "height": 900
+    },
+    "desktop": {
+      "width": 1200,
+      "height": 800
+    }
+  }
+}
+
