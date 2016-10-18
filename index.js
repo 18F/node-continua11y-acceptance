@@ -1,59 +1,37 @@
 'use strict';
 
-const pa11y   = require('pa11y');
-const Results = require('./lib/results');
+//const Continua11yAcceptance = require('./lib/continua11y-acceptance');
 
-function testDesktop(server, path, callback) {
-  let test = generateTest(desktopSize);
-  runTest(test, urlFor(server, path), callback);
-}
+// USAGE:
+//
+// const continua11yAcceptance = require('continua11y-acceptance');
+// const continua11yConfig     = require('./config/continua11y.json');
+// 
+// let testGenerator = continua11yAcceptance.config(continua11yConfig, {more: 'detailed config'});
+// let test = continua11yAcceptance.test('mobile', server)
+// test.run(path, (err, results) => {
+//   if (err) { done(err); }
+//   results.assertNoErrors();
+//   results.assertWarningsLessThan(20);
+// });
 
-function testMobile(server, path, callback) {
-  let test = generateTest(desktopSize);
-  runTest(test, urlFor(server, path), callback);
-}
 
-function generateTest(size, options) {
-  options = options || {};
-  return pa11y({
-    page: { viewport: size }
-  });
-}
+module.exports = function continua11yAcceptance() {
+  return new Continua11yAcceptance();
+};
 
-function urlFor(server, path) {
-  let port = server.address().port;
-  let host = server.address().address;
-  if (host === '::') {
-    host = 'localhost';
+class Continua11yAcceptance {
+  constructor() {
+    this.config = {};
   }
 
-  return 'http://' + host + ':' + port + path;
+  config(json) {
+    
+  }
+
+  test(server, size) {
+    size = size || 'default';
+    
+  }
 }
-
-function runTest(test, url, callback) {
-  test.run(url, (err, results) => {
-    if (err) { throw err; }
-    callback(new Results(results));
-  });
-}
-
-let mobileSize = {
-  width: 320,
-  height: 400
-};
-
-let desktopSize = {
-  width: 1200,
-  height: 800
-};
-
-module.exports = {
-  Results: Results,
-  generateTest: generateTest,
-  runTest: runTest,
-  mobileSize: mobileSize,
-  desktopSize: desktopSize,
-  testDesktop: testDesktop,
-  testMobile: testMobile
-};
 

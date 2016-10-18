@@ -12,7 +12,7 @@ describe('ConfigGenerator', () => {
   describe('when sizes are specified', () => {
     beforeEach(() => {
       generator = new ConfigGenerator(sizesConfig);
-      generator.generate();
+      generator.setup();
     });
 
     it('the default is the first one', () => {
@@ -28,7 +28,7 @@ describe('ConfigGenerator', () => {
     });
 
     it('has the name of the sizes', () => {
-      assert.deepEqual(generator.sizeNames(), ['mobile', 'tablet', 'desktop']);
+      assert.deepEqual(generator.sizeNames(), ['default', 'mobile', 'tablet', 'desktop']);
     });
 
     it('has other custom config bits', () => {
@@ -42,7 +42,7 @@ describe('ConfigGenerator', () => {
   describe('no sizes specified', () => {
     beforeEach(() => {
       generator = new ConfigGenerator(noSizesConfig);
-      generator.generate();
+      generator.setup();
     });
 
     it('has a default size', () => {
