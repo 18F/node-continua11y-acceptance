@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="initial-scale=1">
+  </head>
+  <body class='{{controller_namespace}}'>
+    <header role="banner" class='row'>
+      <div class='usa-pride-banner row'>
+        <div class='inner'>
+          <div class='unit usa-flag-icon'>
+          </div>
+          <div class='unit spacer'></div>
+          <p class='unit'>
+            An official website of the United States government
+          </p>
+        </div>
+      </div>
+      <div class='continually-header row'>
+        <div class='inner'>
+          <div class='unit'>
+            <a href="/">Continua11y</a>
+          </div>
+          <div class='unit spacer'></div>
+          <div class='last-unit m-hidden site-description'>
+            {{site_description_small}}
+          </div>
+        </div>
+      </div>
+      <div class='m-row t-hidden d-hidden site-description'>
+        <p class='inner'>{{site_description_small}}</p>
+      </div>
+    </header>
+
+    <a href="https://github.com/18f/continua11y-due" class='m-hidden'>
+    </a>
+
+    <div class='page row'>
+      <div class='inner'>
+        {{> page}}
+      </div>
+    </div>
+
+    <footer class='row' role='banner'>
+      <div class='unit our-logo'>
+        <div class='inner'>
+        </div>
+      </div>
+      <div class='last-unit'>
+        <div class='inner'>
+          <div class='row spacer t-hidden m-hidden'></div>
+          <p>
+            Continua11y is a project of Technology Transformation Service at the General Services Administration. This is source code is dedicated to the public domain under a CC0 license.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
