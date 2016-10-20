@@ -83,4 +83,14 @@ describe('Reporter', () => {
       assert.equal(basePath, __dirname + '/fixtures/accessibility');
     });
   });
+
+  describe('Reporter.NullWriter write method', () => {
+    it('calls the callback provided without arguments', (done) => {
+      let writer = new Reporter.NullWriter();
+      writer.write({}, () => {
+        assert(true, 'callback called');
+        done();
+      });
+    });
+  });
 });
