@@ -3,20 +3,20 @@
 const assert          = require('assert');
 const express         = require('express');
 const fs              = require('fs');
-const rimraf          = require('rimraf');
 
 const config          = require('./fixtures/config/many-sizes.json');
 const goodWebPage     = fs.readFileSync(__dirname + '/fixtures/html/good.html').toString();
 const badWebPage      = fs.readFileSync(__dirname + '/fixtures/html/bad.html').toString();
 
 const contintua11yAcceptance = require('../index.js');
+const accessibilityAcceptance = contintua11yAcceptance(config);
 
 describe('full acceptance flow', () => {
   let server, mobileTest, tabletTest, desktopTest;
   let reportingPath = __dirname + '/../accessibility';
 
   before((done) => {
-    rimraf(reportingPath, () => { done(); });
+    accessibilityAcceptance.clearReport(done);
   });
 
   describe('when the page has no errors', () => {
