@@ -118,6 +118,42 @@ Here is an example data for a missing/empty title tag.
       typeCode: 1
     }
 
+### Reporting
+
+The library by default writes reports about each url in each size that
+it runs to `/accessibility`. Reporting can be turned off in
+configration.
+
+You will likely want to update your `.gitignore` to ignore accessibility
+reports. These are effemeral artifacts that should not be
+part of the repository.
+
+You can turn off configuration via options that include this:
+    {
+      report: false
+    }
+
+To send the report to an alternate directory use this configuration:
+
+    {
+      report: '/my-special/directory'
+    }
+
+Environmental valiables can be used to override whether reporting
+happens:
+
+    CONTINUA11Y_REPORTING=false
+    # or
+    CONTINUA11Y_REPORTING=true
+
+The main purpose of this flag is to reduce test time in local
+development environments. Therefore, directory specifications
+are only available via json configuration.
+
+Currently reporting is only available as json, one file per path and
+size. The goal of reporting is to allow CI processes to aggregate this
+data and send it to a reporting dashboard.
+
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for additional information.
