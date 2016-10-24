@@ -157,5 +157,10 @@ describe('full acceptance flow', () => {
         assert(exists);
       });
     });
+
+    it('reports are json all the way down', () => {
+      let json = require(reportingPath + '/bar^^desktop.json');
+      assert.equal(json.results.errors[0].type, 'error');
+    });
   });
 });

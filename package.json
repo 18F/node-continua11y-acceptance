@@ -1,6 +1,6 @@
 {
   "name": "continua11y-acceptance",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Test helpers for specifying accessibility of pages during web development.",
   "main": "index.js",
   "scripts": {
